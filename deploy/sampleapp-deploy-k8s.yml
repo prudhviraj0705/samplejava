@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: samplejavaapp
-        image: sriram226/ci-cd:bno
+        image: prudvi789/ci-cd:bno
         ports:
         - name: http
           containerPort: 8080
