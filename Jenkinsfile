@@ -4,7 +4,7 @@ pipeline {
         stage('compile') {
 	   steps {
                 echo 'compiling..'
-		git url: 'https://github.com/sriram226/samplejavaapp'
+		git url: 'https://github.com/prudhviraj0705/samplejava'
 		sh script: '/opt/apache-maven-3.8.5/bin/mvn compile'
            }
         }
@@ -40,16 +40,16 @@ pipeline {
 	    
 	     stage('Build image') {
                steps {
-                 sh 'docker build -t sriram226/ci-cd:$BUILD_NUMBER .'
+                 sh 'docker build -t prudvi789/ci-cd:$BUILD_NUMBER .'
                 
             }
         }
                 stage('push docker image') {
 			steps {
 				withCredentials([string(credentialsId: 'DOCKER_HUB_PWD', variable: 'DOCKER_HUB_PWD')]) {
-                sh "docker login -u sriram226 -p ${DOCKER_HUB_PWD}"
+                sh "docker login -u prudvi789 -p ${DOCKER_HUB_PWD}"
 				}
-				sh 'docker push sriram226/ci-cd:$BUILD_NUMBER'
+				sh 'docker push prudvi789/ci-cd:$BUILD_NUMBER'
 			}
         }
         stage('Deploy to K8s') {
